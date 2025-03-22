@@ -150,13 +150,13 @@ chrpath --delete %{buildroot}%{_bindir}/nix %{buildroot}%{_libdir}/libnixexpr.so
 
 # nix config
 mkdir -p %{buildroot}/etc/nix
-cp %{SOURCE1} %{SOURCE2} %{buildroot}/etc/nix/
+cp specs/{nix.conf,registry.json} %{SOURCE2} %{buildroot}/etc/nix/
 
-install -p -D -m 0644 %{SOURCE4} %{buildroot}%{_sysusersdir}/nix.conf
+install -p -D -m 0644 specs/nix.sysusers %{buildroot}%{_sysusersdir}/nix.conf
 
 
 %pre
-%sysusers_create_compat %{SOURCE4}
+%sysusers_create_compat specs/nix.sysusers
 
 
 %post singleuser
