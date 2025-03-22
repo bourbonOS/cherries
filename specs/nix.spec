@@ -104,9 +104,9 @@ If you want multi-user mode install the main nix package instead.
 
 
 %prep
-%autosetup -p1
+%autosetup -p1 -a1
 
-cp -p %{SOURCE3} README.fedora.md
+cp -p specs/README.md README.fedora.md
 
 
 %build
@@ -150,7 +150,7 @@ chrpath --delete %{buildroot}%{_bindir}/nix %{buildroot}%{_libdir}/libnixexpr.so
 
 # nix config
 mkdir -p %{buildroot}/etc/nix
-cp specs/{nix.conf,registry.json} %{SOURCE2} %{buildroot}/etc/nix/
+cp specs/{nix.conf,registry.json} %{buildroot}/etc/nix/
 
 install -p -D -m 0644 specs/nix.sysusers %{buildroot}%{_sysusersdir}/nix.conf
 
