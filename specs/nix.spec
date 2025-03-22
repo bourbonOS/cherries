@@ -15,7 +15,7 @@ License:        LGPL-2.1-or-later
 URL:            https://github.com/NixOS/nix
 Source0:        https://github.com/NixOS/nix/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 # https://nixos.org/manual/nix/unstable/installation/prerequisites-source
-Source1:        https://raw.githubusrcontent.com/bourbonOS/cherries/live/build-cmpnts/nix-build-components.tar.gz
+Source1:        https://raw.githubusercontent.com/bourbonOS/cherries/live/build-cmpnts/nix-build-components.tar.gz
 
 BuildRequires:  autoconf-archive
 BuildRequires:  automake
