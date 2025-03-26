@@ -2,7 +2,7 @@
 %define datadir /usr/share
 
 Name:           bun
-Version: 1.2.5
+Version: 1.2.6
 Release: 1%{?dist}
 Summary:        Javascript/Typescript toolkit
 
