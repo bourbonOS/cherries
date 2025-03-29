@@ -3,8 +3,8 @@
 %define debug_package %{nil}
 
 Name:		apx
-Version:	2.4.4
-Release:	%autorelease
+Version: 2.4.5
+Release: 1%{?dist}
 Summary:	Wrapper for multiple package managers based on distrobox
 
 License:	GPL-3.0-only
