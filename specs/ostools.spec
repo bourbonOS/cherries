@@ -44,7 +44,7 @@ mkdir -p %{buildroot}/etc/{containerconf,pesticide.d}
 install -Dpm755 cherry/src/cherry %{buildroot}/usr/bin/
 install -Dpm755 synergy/src/synergy %{buildroot}/usr/bin/
 install -Dpm755 pesticide/src/{check,enroll,status,version} %{buildroot}/usr/libexec/pesticide/
-cp -r cherry/src/files/* %{buildroot}/etc/containerconf/
+cp -r cherry/src/files/{*,.cherry} %{buildroot}/etc/containerconf/
 cp -r cherry/src/submodules/* %{buildroot}/usr/libexec/ostools/
 cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
 
