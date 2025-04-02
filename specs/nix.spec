@@ -49,6 +49,7 @@ BuildRequires:  chrpath
 BuildRequires:  systemd-rpm-macros
 %{?sysusers_requires_compat}
 Requires:       %{name}-core = %{version}-%{release}
+Requires:       synergy
 Obsoletes:      emacs-%{name} < %{version}-%{release}
 Obsoletes:      emacs-%{name}-el < %{version}-%{release}
 Obsoletes:      %{name}-daemon < %{version}-%{release}
