@@ -23,7 +23,6 @@ cherry is a tool for managing the baseOS and containers.
 %package synergy
 Summary:        Wrapper for nix
 Requires:       bash
-Requires:       nix
 
 %description synergy
 synergy is a wrapper for nix that provides a more user-friendly syntax.
