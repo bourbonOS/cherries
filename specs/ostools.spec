@@ -15,7 +15,7 @@ ostools is a collection of tools made specifically for bourbonOS.
 %package cherry
 Summary:        baseOS managment tool
 Requires:       bash
-Requires:       pesticide
+Requires:       ostools-pesticide
 
 %description cherry
 cherry is a tool for managing the baseOS and containers.
