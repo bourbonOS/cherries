@@ -51,6 +51,7 @@ cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
 %files cherry
 /usr/bin/cherry
 /etc/containerconf/*
+/etc/containerconf/.cherry/*
 /usr/libexec/ostools/*
 
 %files synergy
