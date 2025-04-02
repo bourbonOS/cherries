@@ -34,7 +34,7 @@ Requires:       bash
 pesticide is a tool for hashing and verifying enrolled directories. Does NOT provide live protection.
 
 %prep
-%autosetup -q
+%autosetup -p1
 
 %install
 mkdir -p %{buildroot}/usr/{libexec,bin}/
