@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:           ostools
 Version:        1.0.0
 Release:        1%{?dist}
@@ -34,7 +36,7 @@ Requires:       bash
 pesticide is a tool for hashing and verifying enrolled directories. Does NOT provide live protection.
 
 %prep
-%autosetup -p1
+%autosetup -n os-tools-%{version}
 
 %install
 mkdir -p %{buildroot}/usr/{libexec,bin}/
@@ -48,12 +50,12 @@ cp -r cherry/src/submodules/* %{buildroot}/usr/libexec/ostools/
 cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
 
 %files cherry
-/usr/bin/cherry/
+/usr/bin/cherry
 /etc/containerconf/*
 /usr/libexec/ostools/*
 
 %files synergy
-/usr/bin/synergy/
+/usr/bin/synergy
 
 %files pesticide
 /usr/libexec/pesticide/*
