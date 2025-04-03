@@ -38,21 +38,18 @@ pesticide is a tool for hashing and verifying enrolled directories. Does NOT pro
 %autosetup -n os-tools-%{version}
 
 %install
-mkdir -p %{buildroot}/usr/{libexec,bin}/
-mkdir -p %{buildroot}/usr/libexec/{ostools,pesticide}/
+mkdir -p %{buildroot}/usr/{libexec/pesticide,bin}/
 mkdir -p %{buildroot}/etc/{containerconf,pesticide.d}
 install -Dpm755 cherry/src/cherry %{buildroot}/usr/bin/
 install -Dpm755 synergy/src/synergy %{buildroot}/usr/bin/
 install -Dpm755 pesticide/src/{check,enroll,status,version} %{buildroot}/usr/libexec/pesticide/
 cp -r cherry/src/files/{*,.cherry} %{buildroot}/etc/containerconf/
-cp -r cherry/src/submodules/* %{buildroot}/usr/libexec/ostools/
 cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
 
 %files cherry
 /usr/bin/cherry
 /etc/containerconf/*
 /etc/containerconf/.cherry/*
-/usr/libexec/ostools/*
 
 %files synergy
 /usr/bin/synergy
