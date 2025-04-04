@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           ostools
-Version:        1.0.0
-Release:        1%{?dist}
+Version: 1.1.0
+Release: 1%{?dist}
 Summary:        OS tools for bourbonOS
 
 License:        GPLv3
