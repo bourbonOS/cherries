@@ -34,17 +34,29 @@ Requires:       bash
 %description pesticide
 pesticide is a tool for hashing and verifying enrolled directories. Does NOT provide live protection.
 
+%package homefs
+Summary:        Home encryption tool
+Requires:       bash
+
+%description homefs
+homefs is a tool for backing up and encrypting your /var/home directory.
+
 %prep
 %autosetup -n os-tools-%{version}
 
 %install
-mkdir -p %{buildroot}/usr/{libexec/pesticide,bin}/
+mkdir -p %{buildroot}/usr/{libexec/{pesticide,homefs},{lib/systemd/system,bin}}/
 mkdir -p %{buildroot}/etc/{containerconf,pesticide.d}
 install -Dpm755 cherry/src/cherry %{buildroot}/usr/bin/
 install -Dpm755 synergy/src/synergy %{buildroot}/usr/bin/
 install -Dpm755 pesticide/src/{check,enroll,status,version} %{buildroot}/usr/libexec/pesticide/
+install -Dpm755 homefs/src/homefs-init %{buildroot}/usr/libexec/homefs
 cp -r cherry/src/files/{*,.cherry} %{buildroot}/etc/containerconf/
+cp -r homefs/files/* %{buildroot}/usr/lib/systemd/system/
 cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
+
+%posttrans -n ostools-homefs
+/usr/bin/systemctl enable homefs-setup.service
 
 %files cherry
 /usr/bin/cherry
@@ -57,6 +69,10 @@ cp pesticide/src/files/pesticide.conf %{buildroot}/etc/pesticide.d/
 %files pesticide
 /usr/libexec/pesticide/*
 /etc/pesticide.d/pesticide.conf
+
+%files homefs
+/usr/libexec/homefs/homefs-init
+/usr/lib/systemd/system/*
 
 %changelog
 %autochangelog
