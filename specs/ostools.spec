@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           ostools
-Version: 1.2.6
+Version: 1.2.7
 Release: 1%{?dist}
 Summary:        OS tools for bourbonOS
 
