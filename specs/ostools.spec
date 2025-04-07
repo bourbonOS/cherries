@@ -16,6 +16,7 @@ ostools is a collection of tools made specifically for bourbonOS.
 Summary:        baseOS managment tool
 Requires:       bash
 Requires:       ostools-pesticide
+Requires:       ostools-homefs
 
 %description cherry
 cherry is a tool for managing the baseOS and containers.
@@ -37,6 +38,7 @@ pesticide is a tool for hashing and verifying enrolled directories. Does NOT pro
 %package homefs
 Summary:        Home encryption tool
 Requires:       bash
+Requires:       rsync
 
 %description homefs
 homefs is a tool for backing up and encrypting your /var/home directory.
