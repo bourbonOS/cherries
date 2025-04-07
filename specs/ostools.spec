@@ -47,6 +47,10 @@ homefs is a tool for backing up and encrypting your /var/home directory.
 %install
 mkdir -p %{buildroot}/usr/{libexec/{pesticide,homefs},{lib/systemd/system,bin}}/
 mkdir -p %{buildroot}/etc/{containerconf,pesticide.d}
+chmod +x cherry/src/cherry
+chmod +x synergy/src/synergy
+chmod +x pesticide/src/{check,enroll,status,version}
+chmod +x homefs/src/homefs-init
 install -Dpm755 cherry/src/cherry %{buildroot}/usr/bin/
 install -Dpm755 synergy/src/synergy %{buildroot}/usr/bin/
 install -Dpm755 pesticide/src/{check,enroll,status,version} %{buildroot}/usr/libexec/pesticide/
