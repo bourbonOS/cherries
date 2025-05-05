@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           restic
-Version:        0.18.0d
+Version:        0.18.0
 Release:        1%{?dist}
 Summary:        A modern backup program that is fast, efficient and secure
 
