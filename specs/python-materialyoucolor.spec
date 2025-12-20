@@ -22,8 +22,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        %{_version}%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release:        %autorelease -b5
+Version: 2.0.10
+Release: 1%{?dist}
 Summary:        Material You color algorithms for Python!
 License:        MIT
 URL:            https://github.com/T-Dynamos/materialyoucolor-python
