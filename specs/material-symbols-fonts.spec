@@ -1,6 +1,6 @@
 Name:           material-symbols-fonts
-Version:        1.0
-Release:        1%{?dist}
+Version: 4.0.0
+Release: 1%{?dist}
 Summary:        Material Symbols variable font by Google
 
 License:        Apache-2.0
