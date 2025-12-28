@@ -55,18 +55,36 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {}
 
 window-rule {
-    geometry-corner-radius 6
+    geometry-corner-radius 12
     clip-to-geometry true
-}
-
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
 }
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+environment {
+    XDG_CURRENT_DESKTOP "Niri"
+    XDG_SESSION_TYPE "wayland"
+    XDG_SESSION_DESKTOP "Niri"
+
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+
+    MOZ_ENABLE_WAYLAND "1"
+    GDK_SCALE "1"
+    SDL_VIDEODRIVER "wayland"
+
+    ELECTRON_ENABLE_WAYLAND "1"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+}
+
+cursor {
+    xcursor-theme "Bibata-Original-Ice"
+    xcursor-size 24
 }
 
 binds { 
