@@ -84,7 +84,7 @@ environment {
 
 cursor {
     xcursor-theme "Bibata-Original-Ice"
-    xcursor-size 24
+    xcursor-size 36
 }
 
 binds { 
@@ -240,7 +240,7 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
     
-    Mod+Space { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+Shift+C { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+Shift+Alt+S { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+Space hotkey-overlay-title="Open App launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Shift+C hotkey-overlay-title="Open Control Center" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Mod+Shift+Alt+S hotkey-overlay-title="Open Desktop Settings" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "settings" "toggle"; }
 }
