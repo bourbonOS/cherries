@@ -84,7 +84,7 @@ environment {
 
 cursor {
     xcursor-theme "Bibata-Original-Ice"
-    xcursor-size 36
+    xcursor-size 28
 }
 
 binds { 
