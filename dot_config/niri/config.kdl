@@ -1,3 +1,5 @@
+include optional=true "noctalia.kdl"
+
 input {
     keyboard {
         xkb {}
@@ -42,15 +44,12 @@ layout {
         softness 30
         spread 5
         offset x=0 y=5
-        color "#0007"
     }
 
     struts {}
 
     focus-ring {
         width 2
-        active-color "#ffffff"
-        inactive-color "#808080"
     }
 }
 
@@ -233,4 +232,9 @@ binds {
     Mod+Space hotkey-overlay-title="Open App launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+Shift+C hotkey-overlay-title="Open Control Center" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+Shift+Alt+S hotkey-overlay-title="Open Desktop Settings" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+Ctrl+P hotkey-overlay-title="Open Power Menu" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
 }
