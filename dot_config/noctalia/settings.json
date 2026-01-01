@@ -488,7 +488,7 @@
         "discord": false,
         "emacs": false,
         "enableUserTemplates": false,
-        "foot": false,
+        "foot": true,
         "fuzzel": false,
         "ghostty": false,
         "gtk": true,
@@ -511,7 +511,7 @@
     "ui": {
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
-        "fontDefault": "Inter Display",
+        "fontDefault": "Inter",
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono",
         "fontFixedScale": 1.1,
