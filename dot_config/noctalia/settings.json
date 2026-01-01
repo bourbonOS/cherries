@@ -305,7 +305,7 @@
         "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 1,
-        "avatarImage": "/var/home/machinoolio/.face",
+        "avatarImage": "/var/home/PLACEHOLDER/.face",
         "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0.2,
@@ -404,7 +404,7 @@
         "audioSource": "default_output",
         "colorRange": "limited",
         "copyToClipboard": false,
-        "directory": "/var/home/machinoolio/Videos",
+        "directory": "/var/home/PLACEHOLDER/Videos",
         "frameRate": 60,
         "quality": "very_high",
         "showCursor": true,
@@ -522,7 +522,7 @@
         "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
-        "directory": "/var/home/machinoolio/Pictures/wallpapers",
+        "directory": "/usr/share/tartaria/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
