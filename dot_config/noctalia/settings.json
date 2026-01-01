@@ -522,7 +522,7 @@
         "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
-        "directory": "/usr/share/tartaria/wallpapers",
+        "directory": "/var/home/PLACEHOLDER/Pictures/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",

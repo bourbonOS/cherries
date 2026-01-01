@@ -1,4 +1,4 @@
-include optional=true "noctalia.kdl"
+include "noctalia.kdl"
 
 input {
     keyboard {
@@ -48,9 +48,17 @@ layout {
 
     struts {}
 
+    background-color "transparent"
+
     focus-ring {
         width 2
     }
+}
+
+overview {
+  workspace-shadow {
+    off
+  }
 }
 
 hotkey-overlay {}
@@ -69,6 +77,11 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
 }
 
 cursor {
