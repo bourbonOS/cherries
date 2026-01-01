@@ -1,5 +1,7 @@
 include "noctalia.kdl"
 
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+
 input {
     keyboard {
         xkb {}
