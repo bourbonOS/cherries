@@ -97,8 +97,7 @@ cursor {
 
 binds { 
     Mod+Slash { show-hotkey-overlay; }
-    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "footclient"; }
-    Shift+Mod+T hotkey-overlay-title="Open a Terminal (without service)" { spawn "foot"; }
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="Open File Manager" { spawn "nautilus"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
