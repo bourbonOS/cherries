@@ -86,6 +86,10 @@ layer-rule {
   place-within-backdrop true
 }
 
+clipboard {
+    disable-primary
+}
+
 cursor {
     xcursor-theme "Bibata-Original-Ice"
     xcursor-size 28
