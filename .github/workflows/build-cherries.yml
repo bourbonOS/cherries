@@ -1,21 +1,19 @@
-name: Build Chezmoi dotfiles for Tartaria
+name: Build extra stuff for Tartaria
 on:
   pull_request:
     branches:
       - live
-    paths:
-      - "chezmoi/**"
   schedule:
     - cron: "05 9 * * *"
   push:
     branches:
       - live
-    paths:
-      - "chezmoi/**"
+    paths-ignore:
+      - "**/README.md"
   workflow_dispatch:
 
 env:
-  IMAGE_DESC: "OCI image for Tartaria Cherries"
+  IMAGE_DESC: "OCI image for extra stuff needed in Tartaria"
   IMAGE_KEYWORDS: "tartaria"
   IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/136393846?s=200&v=4"
   IMAGE_NAME: "${{ github.repository_name }}"
@@ -154,7 +152,6 @@ jobs:
             type=ref,event=pr
             type=sha,enable=${{ github.event_name == 'pull_request' }}
           labels: |
-            containers.bootc=1
             io.artifacthub.package.deprecated=false
             io.artifacthub.package.keywords=${{ env.IMAGE_KEYWORDS }}
             io.artifacthub.package.license=Apache-2.0
