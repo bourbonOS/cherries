@@ -1,23 +1,28 @@
-FROM archlinux:latest AS builder
+FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm --needed base-devel git sudo
-RUN useradd -m builder && \
-    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
+RUN useradd -m builduser && \
+    echo "builduser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builduser
 
-USER builder
+USER builduser
 WORKDIR /home/builduser
 
 RUN git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
     makepkg -si --noconfirm
-RUN mkdir -p /home/builder/packages
-RUN yay -S --buildonly --noconfirm \
-    iio-niri \
-    warehouse-git \
-    jetbrains-gateway \
-    jre-jetbrains \
-    maplemono-otf
-RUN find . -name "*.pkg.tar.zst" -exec cp {} /home/builder/packages/ \;
+COPY --chown=builduser:builduser packages.txt .
+RUN mkdir -p /home/builduser/output
+
+RUN while read -r pkg; do \
+    [[ -z "$pkg" || "$pkg" == #* ]] && continue; \
+    echo "Building $pkg..."; \
+    yay -G "$pkg" && \
+    cd "$pkg" && \
+    makepkg -sr --noconfirm && \
+    cp *.pkg.tar.zst /home/builduser/output/ && \
+    cd .. && \
+    rm -rf "$pkg"; \
+    done < packages.txt
 
 FROM scratch AS ctx
 COPY chezmoi/ /system_files/usr/share/tartaria
