@@ -1,25 +1,3 @@
-Dots for tartaria
+Dots and extra AUR packages for tartaria
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-key lime pie
+key lime pie!!,

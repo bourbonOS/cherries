@@ -1,0 +1,6 @@
+# packages in AUR not available in Chaotic AUR... yet
+iio-niri
+warehouse-git
+jetbrains-gateway
+jre-jetbrains
+maplemono-otf

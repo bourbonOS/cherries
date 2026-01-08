@@ -1,0 +1,26 @@
+name: Create Cherries Package Repository
+on:
+  pull_request:
+    branches:
+      - live
+    paths:
+      - "packages.txt"
+  schedule:
+    - cron: "05 9 * * *"
+  push:
+    branches:
+      - live
+    paths:
+      - "packages.txt"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and create repository
+        uses: taonga07/CustomArchRepo@v1
