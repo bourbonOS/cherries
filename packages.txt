@@ -3,3 +3,5 @@ warehouse-git
 jetbrains-gateway
 jre-jetbrains
 maplemono-otf
+devpod
+devpod-cli-bin
