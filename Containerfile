@@ -1,25 +1,24 @@
-FROM archlinux:latest
+FROM archlinux:latest AS builder
 
 RUN pacman -Syu --noconfirm --needed base-devel git sudo
-RUN useradd -m builduser && \
-    echo "builduser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builduser
+RUN useradd -m builder && \
+    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
 
-USER builduser
-WORKDIR /home/builduser
+USER builder
+WORKDIR /home/builder
 
 RUN git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
     makepkg -si --noconfirm
-COPY --chown=builduser:builduser packages.txt .
-RUN mkdir -p /home/builduser/output
+COPY --chown=builder:builder packages.txt .
+RUN mkdir -p /home/builder/packages
 
 RUN while read -r pkg; do \
-    [[ -z "$pkg" || "$pkg" == #* ]] && continue; \
     echo "Building $pkg..."; \
     yay -G "$pkg" && \
     cd "$pkg" && \
-    makepkg -sr --noconfirm && \
-    cp *.pkg.tar.zst /home/builduser/output/ && \
+    makepkg -sr --noconfirm --nocheck && \
+    cp *.pkg.tar.zst /home/builder/packages/ && \
     cd .. && \
     rm -rf "$pkg"; \
     done < packages.txt
