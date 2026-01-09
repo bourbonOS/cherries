@@ -24,5 +24,5 @@ RUN while read -r pkg; do \
     done < packages.txt
 
 FROM scratch AS ctx
-COPY chezmoi/ /system_files/usr/share/tartaria
+COPY chezmoi/ /system_files/usr/share/tartaria/cherries
 COPY --from=builder home/builder/packages/ /system_files/packages/
