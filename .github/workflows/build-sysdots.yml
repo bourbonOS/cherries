@@ -35,7 +35,6 @@ concurrency:
 jobs:
   build_push:
     name: Build and push image
-    needs: check-priority
     permissions:
       contents: read
       packages: write
