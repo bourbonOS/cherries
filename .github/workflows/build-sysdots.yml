@@ -29,28 +29,10 @@ env:
   DEFAULT_TAG: "latest"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  check-priority:
-    name: Check for Job Overlap
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-
-      - name: Check for job overlap
-        env:
-            GH_TOKEN: ${{ github.token }}
-        run: |
-          if [ ! -z "$(gh run list --workflow build-aurpkgs.yml --status in_progress --limit 1 --json databaseId -q '.[0].databaseId')" ]; then
-            echo "AUR package build is running!!! Failing to prevent job overlap."
-            exit 1
-          else
-            echo "No AUR package builds detected."
-          fi
-
   build_push:
     name: Build and push image
     needs: check-priority
