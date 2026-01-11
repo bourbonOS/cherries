@@ -1,3 +1,4 @@
+# create AUR package builder
 FROM archlinux:latest AS builder
 
 # install base packages
@@ -33,9 +34,6 @@ RUN yay -S --noconfirm maplemono-ttf
 
 # now we assemble the skeleton / directory for use in Tartaria
 FROM ghcr.io/tartaria-dev/cherries:latest-amd64
-
-# temporary workaround
-COPY --from=archlinux:latest / /
 
 # clean existing package cache
 RUN rm -rf /system_files/packages/*
