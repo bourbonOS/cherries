@@ -36,6 +36,9 @@ jobs:
   check-priority:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
       - name: Check for priority
         env:
             GH_TOKEN: ${{ github.token }}
@@ -44,9 +47,11 @@ jobs:
           RUNNING_BAR=$(gh run list --workflow build-aurpkgs.yml --status in_progress --limit 1 --json databaseId -q '.[0].databaseId')
           
           if [ ! -z "$RUNNING_BAR" ]; then
-            echo "AUR package build is running!!! Cancelling."
+            echo "AUR package build is running!!! Cancelling to prevent job overlap."
             gh run cancel ${{ github.run_id }}
             sleep 10
+          else
+            echo "No AUR package builds detected."
           fi
 
   build_push:
