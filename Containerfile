@@ -1,18 +1,23 @@
 FROM archlinux:latest AS builder
 
+# install base packages
 RUN pacman -Syu --noconfirm --needed base-devel git sudo
-RUN useradd -m builder && \
-    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
+RUN useradd -m builder
+RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
 
+# now start working as build user
 USER builder
 WORKDIR /home/builder
 
+# build yay and prepare package list
 RUN git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
     makepkg -si --noconfirm
-COPY --chown=builder:builder packages.txt .
+COPY --chown=builder:builder system-packages/packages.txt .
 RUN mkdir -p /home/builder/packages
 
+# retreive package source and build package from source for each
+# entry in packages.txt
 RUN while read -r pkg; do \
     echo "Building $pkg..."; \
     yay -G "$pkg" && \
@@ -23,6 +28,16 @@ RUN while read -r pkg; do \
     rm -rf "$pkg"; \
     done < packages.txt
 
+# dummy install so we can get the maplemono packages into yay cache
+RUN yay -S --noconfirm maplemono-ttf
+
+# now we assemble the skeleton / directory for use in Tartaria
 FROM scratch AS ctx
-COPY chezmoi/ /system_files/usr/share/tartaria/cherries
-COPY --from=builder home/builder/packages/ /system_files/packages/
+COPY system-dots/ /system_files/usr/share/tartaria/cherries
+COPY --from=builder /home/builder/packages/ /system_files/packages/
+# maplemono package files need to be copied indivdually due to
+# `yay -G maplemono-*` resulting in an empty source directory,
+# hence the dummy yay install command from earlier
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-nf-cn-unhinted-*-any.pkg.tar.zst /system_files/packages/
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-cn-unhinted-*-any.pkg.tar.zst /system_files/packages/
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-ttf-*-any.pkg.tar.zst /system_files/packages/
