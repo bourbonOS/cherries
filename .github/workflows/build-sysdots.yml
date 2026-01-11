@@ -34,6 +34,7 @@ concurrency:
 
 jobs:
   check-priority:
+    name: Check for Job Overlap
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
