@@ -32,8 +32,15 @@ RUN while read -r pkg; do \
 RUN yay -S --noconfirm maplemono-ttf
 
 # now we assemble the skeleton / directory for use in Tartaria
-FROM scratch AS ctx
-COPY system-dots/ /system_files/usr/share/tartaria/cherries
+FROM ghcr.io/tartaria-dev/cherries:latest-amd64
+
+# temporary workaround
+COPY --from=archlinux:latest / /
+
+# clean existing package cache
+RUN rm -rf /system_files/packages/*
+
+# repopulate package cache with new packages
 COPY --from=builder /home/builder/packages/ /system_files/packages/
 # maplemono package files need to be copied indivdually due to
 # `yay -G maplemono-*` resulting in an empty source directory,

@@ -1,0 +1,110 @@
+name: Build AUR packages for Tartaria
+on:
+  pull_request:
+    branches:
+      - live
+    paths-ignore:
+      - "**/README.md"
+      - "**/.devcontainer.json"
+      - "**/Containerfile.sysdots"
+      - "**/build-sysdots.yml"
+      - "system-dots/**"
+  schedule:
+    - cron: "05 9 * * *"
+  push:
+    branches:
+      - live
+    paths-ignore:
+      - "**/README.md"
+      - "**/.devcontainer.json"
+      - "**/Containerfile.sysdots"
+      - "**/build-sysdots.yml"
+      - "system-dots/**"
+  workflow_dispatch:
+
+env:
+  IMAGE_DESC: "OCI image for extra stuff needed in Tartaria"
+  IMAGE_KEYWORDS: "tartaria"
+  IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/136393846?s=200&v=4"
+  IMAGE_NAME: "${{ github.event.repository.name }}"
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
+  DEFAULT_TAG: "latest"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
+  cancel-in-progress: true
+
+jobs:
+  build_push:
+    name: Build and push image
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    timeout-minutes: 60
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      - name: Build image
+        run: podman build -t "${IMAGE_NAME}:${DEFAULT_TAG}" -f ./Containerfile.aurpkgs .
+
+      - name: Login to GitHub Container Registry
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOGIN_USER: ${{ github.actor }}
+        run: |
+          echo "${GITHUB_TOKEN}" | podman login -u "${LOGIN_USER}" --password-stdin "ghcr.io"
+          echo "${GITHUB_TOKEN}" | docker login -u "${LOGIN_USER}" --password-stdin "ghcr.io"
+
+      - name: Push to GHCR
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        id: push
+        env:
+          IMAGE_REGISTRY: ${{ env.IMAGE_REGISTRY }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_DIGEST: ${{ steps.load.outputs.digest }}
+          PLATFORM: amd64
+          MAX_RETRIES: 3
+        run: |
+          set -x
+
+          for i in $(seq "${MAX_RETRIES}"); do
+            podman push --digestfile=/tmp/digestfile "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" "${IMAGE_REGISTRY}/${IMAGE_NAME}:${DEFAULT_TAG}-${PLATFORM}" && break || sleep $((5 * i));
+          done
+          echo "remote_image_digest=$(< /tmp/digestfile)" | tee "${GITHUB_OUTPUT}"
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@faadad0cce49287aee09b3a48701e75088a2c6ad # v4.0.0
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+      - name: Sign Image
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        env:
+          REMOTE_IMAGE_DIGEST: ${{ steps.push.outputs.remote_image_digest }}
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+        run: cosign sign -y --new-bundle-format=false --use-signing-config=false --key env://COSIGN_PRIVATE_KEY "${IMAGE_REGISTRY}/${IMAGE_NAME}@${REMOTE_IMAGE_DIGEST}"
+
+      - name: Create Job Outputs
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        env:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          PLATFORM: amd64
+          DIGEST: ${{ steps.push.outputs.remote_image_digest }}
+        run: |
+          set -x
+          mkdir -p /tmp/outputs/digests
+          echo "${DIGEST}" | tee "/tmp/outputs/digests/${IMAGE_NAME}-${PLATFORM}.txt"
+
+      - name: Upload Output Artifacts
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: ${{ env.IMAGE_NAME }}-amd64
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            /tmp/outputs/digests/*.txt
