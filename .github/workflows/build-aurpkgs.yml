@@ -66,13 +66,12 @@ jobs:
           IMAGE_REGISTRY: ${{ env.IMAGE_REGISTRY }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_DIGEST: ${{ steps.load.outputs.digest }}
-          PLATFORM: amd64
           MAX_RETRIES: 3
         run: |
           set -x
 
           for i in $(seq "${MAX_RETRIES}"); do
-            podman push --digestfile=/tmp/digestfile "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" "${IMAGE_REGISTRY}/${IMAGE_NAME}:${DEFAULT_TAG}-${PLATFORM}" && break || sleep $((5 * i));
+            podman push --digestfile=/tmp/digestfile "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" "${IMAGE_REGISTRY}/${IMAGE_NAME}:${DEFAULT_TAG}" && break || sleep $((5 * i));
           done
           echo "remote_image_digest=$(< /tmp/digestfile)" | tee "${GITHUB_OUTPUT}"
 
@@ -87,24 +86,3 @@ jobs:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
         run: cosign sign -y --new-bundle-format=false --use-signing-config=false --key env://COSIGN_PRIVATE_KEY "${IMAGE_REGISTRY}/${IMAGE_NAME}@${REMOTE_IMAGE_DIGEST}"
-
-      - name: Create Job Outputs
-        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        env:
-          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-          PLATFORM: amd64
-          DIGEST: ${{ steps.push.outputs.remote_image_digest }}
-        run: |
-          set -x
-          mkdir -p /tmp/outputs/digests
-          echo "${DIGEST}" | tee "/tmp/outputs/digests/${IMAGE_NAME}-${PLATFORM}.txt"
-
-      - name: Upload Output Artifacts
-        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
-        with:
-          name: ${{ env.IMAGE_NAME }}-amd64
-          retention-days: 1
-          if-no-files-found: error
-          path: |
-            /tmp/outputs/digests/*.txt
