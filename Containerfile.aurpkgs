@@ -13,7 +13,9 @@ WORKDIR /home/builder
 # build yay and prepare package list
 RUN git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
-    makepkg -si --noconfirm
+    makepkg -si --noconfirm && \
+    cd .. && \
+    rm -rf yay-bin
 COPY --chown=builder:builder system-packages/packages.txt .
 RUN mkdir -p /home/builder/packages
 
@@ -33,7 +35,7 @@ RUN while read -r pkg; do \
 RUN yay -S --noconfirm maplemono-ttf
 
 # now we assemble the skeleton / directory for use in Tartaria
-FROM ghcr.io/tartaria-dev/cherries:latest-amd64
+FROM ghcr.io/tartaria-dev/cherries:latest
 
 # clean existing package cache
 RUN rm -rf /system_files/packages/*
