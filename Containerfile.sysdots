@@ -2,7 +2,7 @@
 FROM ghcr.io/tartaria-dev/cherries:latest
 
 # clean existing dots directory
-RUN rm -rf /system_files/usr/share/tartaria/cherries/*
+RUN rm -rf /system_files/system_dots/*
 
 # now we repopulate the directory with the new dots
 COPY system-dots /system_files/system_dots
