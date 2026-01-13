@@ -1,8 +1,8 @@
 # we assemble the skeleton / directory for use in Tartaria
-FROM ghcr.io/tartaria-dev/cherries:latest
+FROM archlinux:latest AS final
 
 # clean existing dots directory
-RUN rm -rf /system_files/system_dots/*
+RUN mkdir -p /system_files
 
 # now we repopulate the directory with the new dots
-COPY system-dots /system_files/system_dots
+COPY system-dots/ /system_files/
