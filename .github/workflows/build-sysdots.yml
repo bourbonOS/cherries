@@ -9,6 +9,7 @@ on:
       - "**/Containerfile.aurpkgs"
       - "**/build-aurpkgs.yml"
       - "system-packages/**"
+      - "system-packages"
   push:
     branches:
       - live
@@ -18,6 +19,7 @@ on:
       - "**/Containerfile.aurpkgs"
       - "**/build-aurpkgs.yml"
       - "system-packages/**"
+      - "system-packages"
   workflow_dispatch:
 
 env:

@@ -9,6 +9,7 @@ on:
       - "**/Containerfile.sysdots"
       - "**/build-sysdots.yml"
       - "system-dots/**"
+      - "system-dots"
   schedule:
     - cron: "05 9 * * *"
   push:
@@ -20,6 +21,7 @@ on:
       - "**/Containerfile.sysdots"
       - "**/build-sysdots.yml"
       - "system-dots/**"
+      - "system-dots"
   workflow_dispatch:
 
 env:
