@@ -120,6 +120,9 @@
                     ]
                 },
                 {
+                    "id": "plugin:privacy-indicator"
+                },
+                {
                     "hideWhenZero": false,
                     "id": "NotificationHistory",
                     "showUnreadBadge": true
