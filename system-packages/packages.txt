@@ -1,6 +1,3 @@
 iio-niri
 warehouse-git
-jetbrains-gateway
-jre-jetbrains
-devpod
 mommy
