@@ -3,3 +3,4 @@ warehouse-git
 mommy
 blesh-git
 proot
+bindfs
