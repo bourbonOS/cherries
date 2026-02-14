@@ -313,7 +313,7 @@
         "colorizeIcons": false,
         "deadOpacity": 0.6,
         "displayMode": "always_visible",
-        "enabled": false,
+        "enabled": true,
         "floatingRatio": 0.5,
         "inactiveIndicators": true,
         "monitors": [
