@@ -336,7 +336,7 @@
         "animationDisabled": false,
         "animationSpeed": 1.5,
         "autoStartAuth": true,
-        "avatarImage": "/usr/share/tartaria/faces/default-face",
+        "avatarImage": "/usr/share/tartaria/faces/default-face.png",
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
