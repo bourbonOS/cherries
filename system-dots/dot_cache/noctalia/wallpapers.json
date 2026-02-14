@@ -1,3 +1,7 @@
 {
-    "defaultWallpaper": "/usr/share/tartaria/wallpapers/cherry_tree.png"
+    "defaultWallpaper": "/usr/share/tartaria/wallpapers/cherry_tree.png",
+    "usedRandomWallpapers": {
+    },
+    "wallpapers": {
+    }
 }
