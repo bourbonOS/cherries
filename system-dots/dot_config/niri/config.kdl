@@ -53,7 +53,7 @@ layout {
     background-color "transparent"
 
     focus-ring {
-        width 2
+        width 1
     }
 }
 
