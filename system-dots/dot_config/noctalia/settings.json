@@ -72,7 +72,7 @@
                 {
                     "characterCount": 2,
                     "colorizeIcons": false,
-                    "emptyColor": "secondary",
+                    "emptyColor": "tertiary",
                     "enableScrollWheel": true,
                     "focusedColor": "primary",
                     "followFocusedScreen": false,
@@ -83,7 +83,6 @@
                     "labelMode": "index",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
-                    "reverseScroll": false,
                     "showApplications": false,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
@@ -107,7 +106,8 @@
                     "showNetworkStats": false,
                     "showSwapUsage": false,
                     "textColor": "none",
-                    "useMonospaceFont": true
+                    "useMonospaceFont": true,
+                    "usePadding": false
                 },
                 {
                     "compactMode": false,
@@ -161,12 +161,6 @@
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
                     "showPowerProfiles": false
-                },
-                {
-                    "defaultSettings": {
-                        "position": "Bottom"
-                    },
-                    "id": "plugin:clipper"
                 },
                 {
                     "colorizeDistroLogo": false,
@@ -287,7 +281,7 @@
             ],
             "right": [
                 {
-                    "id": "Notifications"
+                    "id": "AirplaneMode"
                 },
                 {
                     "id": "PowerProfile"
@@ -302,7 +296,7 @@
         }
     },
     "desktopWidgets": {
-        "enabled": false,
+        "enabled": true,
         "gridSnap": true,
         "monitorWidgets": [
         ]
@@ -313,7 +307,8 @@
         "colorizeIcons": false,
         "deadOpacity": 0.6,
         "displayMode": "always_visible",
-        "enabled": true,
+        "dockType": "floating",
+        "enabled": false,
         "floatingRatio": 0.5,
         "inactiveIndicators": true,
         "monitors": [
@@ -328,6 +323,8 @@
         ],
         "pinnedStatic": true,
         "position": "bottom",
+        "showFrameIndicator": true,
+        "sitOnFrame": false,
         "size": 1
     },
     "general": {
@@ -359,6 +356,9 @@
             "keyLeft": [
                 "Left"
             ],
+            "keyRemove": [
+                "Del"
+            ],
             "keyRight": [
                 "Right"
             ],
@@ -375,6 +375,7 @@
         ],
         "lockScreenTint": 0,
         "radiusRatio": 0.55,
+        "reverseScroll": false,
         "scaleRatio": 0.9,
         "screenRadiusRatio": 1,
         "shadowDirection": "center",
@@ -412,10 +413,12 @@
         "weatherShowEffects": true
     },
     "network": {
+        "airplaneModeEnabled": false,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": true,
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
+        "disableDiscoverability": true,
         "wifiDetailsViewMode": "list",
         "wifiEnabled": true
     },
@@ -430,9 +433,12 @@
     },
     "notifications": {
         "backgroundOpacity": 1,
+        "clearDismissed": true,
         "criticalUrgencyDuration": 15,
+        "density": "default",
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
+        "enableMarkdown": false,
         "enableMediaToast": false,
         "enabled": true,
         "location": "top_right",
@@ -450,7 +456,7 @@
         "sounds": {
             "criticalSoundFile": "",
             "enabled": true,
-            "excludedApps": "discord,firefox,chrome,chromium,edge",
+            "excludedApps": "",
             "lowSoundFile": "",
             "normalSoundFile": "",
             "separateSounds": false,
@@ -525,33 +531,35 @@
                 "countdownEnabled": true,
                 "enabled": true,
                 "keybind": "6"
+            },
+            {
+                "action": "rebootToUefi",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
+                "keybind": ""
             }
         ],
-        "showHeader": true
+        "showHeader": true,
+        "showKeybinds": true
     },
     "settingsVersion": 53,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
         "cpuCriticalThreshold": 90,
-        "cpuPollingInterval": 1000,
         "cpuWarningThreshold": 80,
         "criticalColor": "",
         "diskAvailCriticalThreshold": 10,
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 90,
-        "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
         "enableDgpuMonitoring": false,
         "externalMonitor": "missioncenter",
         "gpuCriticalThreshold": 90,
-        "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
-        "loadAvgPollingInterval": 3000,
         "memCriticalThreshold": 95,
-        "memPollingInterval": 1000,
         "memWarningThreshold": 85,
-        "networkPollingInterval": 1000,
         "swapCriticalThreshold": 90,
         "swapWarningThreshold": 80,
         "tempCriticalThreshold": 100,
@@ -585,6 +593,10 @@
                 "enabled": true,
                 "id": "niri"
             },
+            {
+                "enabled": true,
+                "id": "btop"
+            }
         ],
         "enableUserTheming": false
     },
