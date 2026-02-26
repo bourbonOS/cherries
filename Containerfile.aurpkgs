@@ -1,9 +1,12 @@
 FROM archlinux:latest AS builder
 
 # install base packages
-RUN pacman -Syu --noconfirm --needed base-devel git sudo
+RUN pacman -Syu --noconfirm --needed base-devel git sudo ca-certificates
 RUN useradd -m builder
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
+
+# update certs
+RUN update-ca-trust
 
 # now start working as build user
 USER builder
