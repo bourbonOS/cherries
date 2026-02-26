@@ -48,9 +48,9 @@ FROM scratch AS final
 
 # copy mainsys packages
 COPY --from=builder /home/builder/mainsys-pkgs/ /mainsys/
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-nf-cn-unhinted-*-any.pkg.tar.zst /mainsys/
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-cn-unhinted-*-any.pkg.tar.zst /mainsys/
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-ttf-*-any.pkg.tar.zst /mainsys/
+COPY --from=builder /home/builder/.cache/yay/maplemono/maplemono-nf-cn-unhinted-*-any.pkg.tar.zst /mainsys/
+COPY --from=builder /home/builder/.cache/yay/maplemono/maplemono-cn-unhinted-*-any.pkg.tar.zst /mainsys/
+COPY --from=builder /home/builder/.cache/yay/maplemono/maplemono-ttf-*-any.pkg.tar.zst /mainsys/
 
 # copy subsys packages
 COPY --from=builder /home/builder/subsys-pkgs/ /subsys/
