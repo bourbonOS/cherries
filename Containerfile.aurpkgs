@@ -1,4 +1,3 @@
-# create AUR package builder
 FROM archlinux:latest AS builder
 
 # install base packages
@@ -34,16 +33,13 @@ RUN while read -r pkg; do \
 # dummy install so we can get the maplemono packages into yay cache
 RUN yay -S --noconfirm maplemono-ttf
 
-FROM archlinux:latest AS final
-
-# clean existing directory
-RUN mkdir -p /system_files
+FROM scratch AS final
 
 # repopulate package cache with new packages
-COPY --from=builder /home/builder/packages/ /system_files/
+COPY --from=builder /home/builder/packages/ /
 # maplemono package files need to be copied indivdually due to
 # `yay -G maplemono-*` resulting in an empty source directory,
 # hence the dummy yay install command from earlier
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-nf-cn-unhinted-*-any.pkg.tar.zst /system_files/
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-cn-unhinted-*-any.pkg.tar.zst /system_files/
-COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-ttf-*-any.pkg.tar.zst /system_files/
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-nf-cn-unhinted-*-any.pkg.tar.zst /
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-cn-unhinted-*-any.pkg.tar.zst /
+COPY --from=builder home/builder/.cache/yay/maplemono/maplemono-ttf-*-any.pkg.tar.zst /
