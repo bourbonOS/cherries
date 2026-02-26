@@ -10,11 +10,11 @@ USER builder
 WORKDIR /home/builder
 
 # build yay and prepare package lists
-RUN git clone https://aur.archlinux.org/yay-bin.git && \
-    cd yay-bin && \
+RUN git clone https://aur.archlinux.org/yay.git && \
+    cd yay && \
     makepkg -si --noconfirm && \
     cd .. && \
-    rm -rf yay-bin
+    rm -rf yay
 COPY --chown=builder:builder system-packages/mainsys-pkgs.txt .
 COPY --chown=builder:builder system-packages/subsys-pkgs.txt .
 RUN mkdir -p /home/builder/mainsys-pkgs /home/builder/subsys-pkgs
