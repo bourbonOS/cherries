@@ -14,7 +14,7 @@ WORKDIR /home/builder
 COPY --chown=builder:builder system-packages/ .
 
 # run build script
-RUN --mount=type=tmpfs,dest=/tmp --moount=type=tmpfs,dest=/var/tmp bash ./build.sh
+RUN --mount=type=tmpfs,dest=/tmp --mount=type=tmpfs,dest=/var/tmp bash ./build.sh
 
 # final image
 FROM scratch AS final
