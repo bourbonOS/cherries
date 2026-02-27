@@ -1,2 +1,2 @@
-blesh-git
+zsh-theme-powerlevel10k-git
 yay
