@@ -58,9 +58,9 @@ layout {
 }
 
 overview {
-  workspace-shadow {
-    off
-  }
+    workspace-shadow {
+        off
+    }
 }
 
 hotkey-overlay {}
@@ -72,18 +72,28 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {}
 
 window-rule {
-    geometry-corner-radius 12
+    draw-border-with-background false
+    geometry-corner-radius 9
     clip-to-geometry true
+    opacity 0.94
+    background-effect {
+        blur true
+        xray false
+    }
 }
 
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
     open-floating true
+    opacity 1.0
+    background-effect {
+        blur false
+    }
 }
 
 layer-rule {
-  match namespace="^noctalia-wallpaper*"
-  place-within-backdrop true
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
 }
 
 clipboard {
