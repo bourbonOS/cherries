@@ -71,6 +71,13 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {}
 
+blur {
+    passes 4
+    offset 8
+    noise 0.02
+    saturation 1.5
+}
+
 window-rule {
     draw-border-with-background false
     geometry-corner-radius 9
