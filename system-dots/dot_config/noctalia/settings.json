@@ -34,7 +34,7 @@
         "spectrumFrameRate": 30,
         "spectrumMirrored": true,
         "visualizerType": "wave",
-        "volumeFeedback": false,
+        "volumeFeedback": true,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -127,7 +127,7 @@
                     "labelMode": "index",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
-                    "showApplications": true,
+                    "showApplications": false,
                     "showApplicationsHover": false,
                     "showBadge": false,
                     "showLabelsOnlyWhenOccupied": true,
@@ -176,12 +176,20 @@
                 },
                 {
                     "deviceNativePath": "",
-                    "displayMode": "onhover",
+                    "displayMode": "icon-hover",
                     "hideIfIdle": false,
                     "hideIfNotDetected": true,
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
-                    "showPowerProfiles": false
+                    "showPowerProfiles": true
+                },
+                {
+                    "hideWhenZero": false,
+                    "hideWhenZeroUnread": false,
+                    "iconColor": "none",
+                    "id": "NotificationHistory",
+                    "showUnreadBadge": true,
+                    "unreadBadgeColor": "primary"
                 },
                 {
                     "colorizeDistroLogo": false,
@@ -192,14 +200,6 @@
                     "icon": "settings",
                     "id": "ControlCenter",
                     "useDistroLogo": false
-                },
-                {
-                    "hideWhenZero": false,
-                    "hideWhenZeroUnread": false,
-                    "iconColor": "none",
-                    "id": "NotificationHistory",
-                    "showUnreadBadge": true,
-                    "unreadBadgeColor": "primary"
                 },
                 {
                     "clockColor": "none",
@@ -285,7 +285,23 @@
                     "id": "Bluetooth"
                 },
                 {
-                    "id": "WallpaperSelector"
+                    "id": "PowerProfile"
+                },
+                {
+                    "id": "Notifications"
+                }
+            ],
+            "right": [
+                {
+                    "enableOnStateLogic": false,
+                    "generalTooltipText": "Clipboard",
+                    "icon": "clipboard",
+                    "id": "CustomButton",
+                    "onClicked": "qs -c noctalia-shell ipc call plugin togglePanel clipper",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "qs -c noctalia-shell ipc call plugin openSettings clipper",
+                    "showExecTooltip": false,
+                    "stateChecksJson": "[]"
                 },
                 {
                     "defaultSettings": {
@@ -293,29 +309,29 @@
                         "audioSource": "default_output",
                         "colorRange": "limited",
                         "copyToClipboard": false,
+                        "customReplayDuration": "30",
                         "directory": "",
                         "filenamePattern": "recording_yyyyMMdd_HHmmss",
                         "frameRate": "60",
+                        "hideInactive": false,
+                        "iconColor": "none",
                         "quality": "very_high",
+                        "replayDuration": "30",
+                        "replayEnabled": false,
+                        "replayStorage": "ram",
+                        "resolution": "original",
+                        "restorePortalSession": false,
                         "showCursor": true,
                         "videoCodec": "h264",
                         "videoSource": "portal"
                     },
                     "id": "plugin:screen-recorder"
-                }
-            ],
-            "right": [
-                {
-                    "id": "AirplaneMode"
                 },
                 {
-                    "id": "PowerProfile"
+                    "id": "DarkMode"
                 },
                 {
                     "id": "KeepAwake"
-                },
-                {
-                    "id": "NightLight"
                 }
             ]
         }
@@ -445,15 +461,15 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": false,
+        "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 660,
+        "lockTimeout": 330,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 600,
+        "screenOffTimeout": 300,
         "suspendCommand": "",
         "suspendTimeout": 1800
     },
@@ -600,6 +616,13 @@
             },
             {
                 "action": "rebootToUefi",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
+                "keybind": ""
+            },
+            {
+                "action": "userspaceReboot",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": false,
