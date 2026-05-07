@@ -431,8 +431,8 @@
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
-        "lockScreenTint": 0,
-        "passwordChars": false,
+        "lockScreenTint": 0.3,
+        "passwordChars": true,
         "radiusRatio": 0.6,
         "reverseScroll": false,
         "scaleRatio": 0.9,
