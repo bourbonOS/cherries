@@ -1,1 +1,10 @@
 iio-niri
+bibata-cursor-theme
+darkly-qt6-git
+matugen-git
+noctalia-shell
+opentabletdriver
+distroshelf
+qt6ct-kde
+valent-git
+zen-browser-bin
