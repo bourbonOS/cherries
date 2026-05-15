@@ -16,33 +16,12 @@ RUN git clone https://aur.archlinux.org/yay-bin.git && \
     makepkg -si --noconfirm && \
     cd .. && \
     rm -rf yay-bin
-COPY --chown=builder:builder system-packages/mainsys-pkgs.txt .
-COPY --chown=builder:builder system-packages/subsys-pkgs.txt .
+COPY --chown=builder:builder system-packages/ .
 RUN mkdir -p /home/builder/mainsys-pkgs /home/builder/subsys-pkgs
 
-# build mainsys aur pkgs
-RUN JOBS=$(wc -l < mainsys-pkgs.txt) && \
-    parallel --tag --halt now,fail=1 -j "$JOBS" '
-        echo "Building {}..."
-        yay -G "{}" &&
-        cd "{}" &&
-        makepkg -sr --noconfirm --nocheck &&
-        cp *.pkg.tar.zst /home/builder/mainsys-pkgs/ &&
-        cd .. &&
-        rm -rf "{}"
-    ' :::: mainsys-pkgs.txt
-
-# build subsys aur pkgs
-RUN JOBS=$(wc -l < subsys-pkgs.txt) && \
-    parallel --tag --halt now,fail=1 -j "$JOBS" '
-        echo "Building {}..."
-        yay -G "{}" &&
-        cd "{}" &&
-        makepkg -sr --noconfirm --nocheck &&
-        cp *.pkg.tar.zst /home/builder/mainsys-pkgs/ &&
-        cd .. &&
-        rm -rf "{}"
-    ' :::: subsys-pkgs.txt
+# build aur pkgs
+RUN bash ./build.sh ./mainsys-pkgs.txt
+RUN bash ./build.sh ./subsys-pkgs.txt
 
 # dummy install maplemono - we'll copy the built packages later
 RUN yay -S --noconfirm maplemono-ttf
