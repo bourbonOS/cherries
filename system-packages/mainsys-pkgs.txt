@@ -1,4 +1,5 @@
 iio-niri
+python-clickgen
 bibata-cursor-theme
 darkly-qt6-git
 matugen-git

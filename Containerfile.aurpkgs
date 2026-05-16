@@ -16,7 +16,7 @@ RUN git clone https://aur.archlinux.org/yay-bin.git && \
     makepkg -si --noconfirm && \
     cd .. && \
     rm -rf yay-bin && \
-    yay -S --noconfirm noctalia-qs
+    yay -S --noconfirm noctalia-qs python-clickgen
 COPY --chown=builder:builder system-packages/ .
 RUN mkdir -p /home/builder/mainsys-pkgs /home/builder/subsys-pkgs
 
