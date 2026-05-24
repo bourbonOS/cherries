@@ -8,5 +8,5 @@ noctalia-shell
 opentabletdriver
 distroshelf
 qt6ct-kde
-valent-git
+valent
 zen-browser-bin
