@@ -282,13 +282,13 @@
                     "id": "WiFi"
                 },
                 {
+                    "id": "AirplaneMode"
+                },
+                {
                     "id": "Bluetooth"
                 },
                 {
-                    "id": "PowerProfile"
-                },
-                {
-                    "id": "Notifications"
+                    "id": "WallpaperSelector"
                 }
             ],
             "right": [
@@ -302,6 +302,9 @@
                     "onRightClicked": "qs -c noctalia-shell ipc call plugin openSettings clipper",
                     "showExecTooltip": false,
                     "stateChecksJson": "[]"
+                },
+                {
+                    "id": "KeepAwake"
                 },
                 {
                     "defaultSettings": {
@@ -329,9 +332,6 @@
                 },
                 {
                     "id": "DarkMode"
-                },
-                {
-                    "id": "KeepAwake"
                 }
             ]
         }

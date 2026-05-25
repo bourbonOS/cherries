@@ -264,10 +264,11 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
     
-    Mod+Space hotkey-overlay-title="Open App launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+Shift+C hotkey-overlay-title="Open Control Center" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+Shift+Alt+S hotkey-overlay-title="Open Desktop Settings" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Mod+Ctrl+P hotkey-overlay-title="Open Power Menu" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+Space hotkey-overlay-title="Open the App launcher" { spawn "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Alt+V hotkey-overlay-title="Open the Clipboard" { spawn "qs -c noctalia-shell ipc call plugin togglePanel clipper"; }
+    Mod+Shift+C hotkey-overlay-title="Open the Control Center" { spawn "qs -c noctalia-shell ipc call controlCenter toggle"; }
+    Mod+Shift+Alt+S hotkey-overlay-title="Open the Shell Settings" { spawn "qs -c noctalia-shell ipc call settings toggle"; }
+    Mod+Ctrl+P hotkey-overlay-title="Open the Power Menu" { spawn "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 }
 
 debug {
