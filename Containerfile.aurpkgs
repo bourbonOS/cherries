@@ -2,7 +2,7 @@
 FROM archlinux:latest AS builder
 
 # install base packages
-RUN pacman -Syu --noconfirm --needed base-devel git sudo dotnet-runtime dotnet-sdk
+RUN pacman -Syu --noconfirm --needed base-devel git sudo dotnet-runtime dotnet-sdk ffmpeg gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav
 RUN useradd -m builder
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
 

@@ -9,4 +9,4 @@ opentabletdriver
 distroshelf
 qt6ct-kde
 valent
-zen-browser-bin
+zen-browser
