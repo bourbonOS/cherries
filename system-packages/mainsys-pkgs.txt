@@ -1,3 +1,4 @@
+zen-browser
 iio-niri
 python-clickgen
 bibata-cursor-theme
@@ -9,4 +10,3 @@ opentabletdriver
 distroshelf
 qt6ct-kde
 valent
-zen-browser
