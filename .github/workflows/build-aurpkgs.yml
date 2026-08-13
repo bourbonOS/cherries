@@ -54,10 +54,10 @@ jobs:
 
       - name: Configure swap
         run: |
-          sudo swapoff /swapfile
-          sudo fallocate -l 20G /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
+          sudo fallocate -l 12G /mnt/bswap
+          sudo chmod 600 /mnt/bswap
+          sudo mkswap /mnt/bswap
+          sudo swapon /mnt/bswap
 
       - name: Build image
         run: |
