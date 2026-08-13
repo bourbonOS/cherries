@@ -49,17 +49,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
+      - name: Remove unecessary software
+        uses: hastd/free-disk-space@v0.1.2
+
       - name: Configure swap
         run: |
-          sudo fallocate -l 12G /swapfile
-          sudo chmod 600 /swapfile
+          sudo swapoff /swapfile
+          sudo fallocate -l 20G /swapfile
           sudo mkswap /swapfile
           sudo swapon /swapfile
-          free -h
 
       - name: Build image
         run: |
-          podman build --ulimit nofile=4096:4096 -t "${IMAGE_NAME}:${DEFAULT_TAG}" -f ./Containerfile.aurpkgs .
+          podman build --ulimit --build-argnofile=4096:4096 -t "${IMAGE_NAME}:${DEFAULT_TAG}" -f ./Containerfile.aurpkgs .
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
