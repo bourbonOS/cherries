@@ -49,8 +49,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
+      - name: Configure swap
+        run: |
+          sudo fallocate -l 12G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: Build image
-        continue-on-error: true
         run: |
           podman build --ulimit nofile=4096:4096 -t "${IMAGE_NAME}:${DEFAULT_TAG}" -f ./Containerfile.aurpkgs .
 
