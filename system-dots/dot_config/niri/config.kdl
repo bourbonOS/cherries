@@ -117,16 +117,16 @@ binds {
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
     XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
     XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
     XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
- 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
  
     Mod+O repeat=false { toggle-overview; }
  
@@ -262,11 +262,11 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
     
-    Mod+Space hotkey-overlay-title="Open the App launcher" { spawn "noctalia msg panel-toggle launcher"; }
-    Mod+Alt+V hotkey-overlay-title="Open the Clipboard" { spawn "noctalia msg panel-toggle clipboard"; }
-    Mod+Shift+C hotkey-overlay-title="Open the Control Center" { spawn "noctalia msg panel-toggle control-center"; }
-    Mod+Shift+Alt+S hotkey-overlay-title="Open the Shell Settings" { spawn "noctalia msg panel-toggle settings"; }
-    Mod+Ctrl+P hotkey-overlay-title="Open the Power Menu" { spawn "noctalia msg panel-toggle session"; }
+    Mod+Space hotkey-overlay-title="Open the App launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+Alt+V hotkey-overlay-title="Open the Clipboard" { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    Mod+Shift+C hotkey-overlay-title="Open the Control Center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Shift+Alt+S hotkey-overlay-title="Open the Shell Settings" { spawn-sh "noctalia msg panel-toggle settings"; }
+    Mod+Ctrl+P hotkey-overlay-title="Open the Power Menu" { spawn-sh "noctalia msg panel-toggle session"; }
 }
 
 debug {
