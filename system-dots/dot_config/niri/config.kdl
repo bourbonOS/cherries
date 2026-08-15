@@ -263,7 +263,7 @@ binds {
     Mod+Shift+P { power-off-monitors; }
     
     Mod+Space hotkey-overlay-title="Open the App launcher" { spawn "noctalia msg panel-toggle launcher"; }
-    Mod+Shift+V hotkey-overlay-title="Open the Clipboard" { spawn "noctalia msg panel-toggle clipboard"; }
+    Mod+Alt+V hotkey-overlay-title="Open the Clipboard" { spawn "noctalia msg panel-toggle clipboard"; }
     Mod+Shift+C hotkey-overlay-title="Open the Control Center" { spawn "noctalia msg panel-toggle control-center"; }
     Mod+Shift+Alt+S hotkey-overlay-title="Open the Shell Settings" { spawn "noctalia msg panel-toggle settings"; }
     Mod+Ctrl+P hotkey-overlay-title="Open the Power Menu" { spawn "noctalia msg panel-toggle session"; }
