@@ -5,7 +5,7 @@ order = [ "Main" ]
 
     [bar.Main]
     capsule_radius = 7
-    center = []
+    center = [ "workspaces" ]
     concave_edge_corners = false
     end = [ "tray", "network", "bluetooth", "battery", "control-center", "notifications", "clock" ]
     font_family = "Overpass ExtraBold"
@@ -13,7 +13,7 @@ order = [ "Main" ]
     margin_ends = 0
     radius = 0
     scale = 1.0500000081956387
-    start = [ "launcher", "group:g1", "workspaces", "media" ]
+    start = [ "launcher", "group:g1", "media" ]
     thickness = 40
     widget_spacing = 12
 
@@ -31,6 +31,9 @@ order = [ "Main" ]
 
 [battery.device."/org/freedesktop/UPower/devices/headset_dev_C4_A9_B8_6B_24_56"]
 warning_threshold = 0
+
+[brightness]
+enable_ddcutil = true
 
 [control_center]
 width = 600
@@ -57,9 +60,13 @@ width = 600
 auto_locate = true
 
 [lockscreen_widgets]
-enabled = false
 schema_version = 2
 widget_order = []
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
 
 [notification]
 layer = "overlay"
@@ -69,6 +76,9 @@ position = "bottom_center"
 
     [osd.kinds]
     media = false
+
+[plugins]
+enabled = [ "jinliu/imagemagick-clock" ]
 
 [shell]
 corner_radius_scale = 1.3500000201165676
@@ -145,6 +155,10 @@ source = "wallpaper"
 directory = "/usr/share/tartaria/wallpapers"
 transition_on_startup = true
 
+    [wallpaper.automation]
+    enabled = true
+    interval_seconds = 1200
+
     [wallpaper.default]
     path = "/usr/share/tartaria/wallpapers/cherry_tree.png"
 
@@ -189,3 +203,4 @@ show_value = false
 
 [widget.workspaces]
 focused_output_only = true
+style = "focus_hint"
