@@ -78,7 +78,7 @@ position = "bottom_center"
     media = false
 
 [plugins]
-enabled = [ "jinliu/imagemagick-clock" ]
+enabled = []
 
 [shell]
 corner_radius_scale = 1.3500000201165676
@@ -154,10 +154,6 @@ source = "wallpaper"
 [wallpaper]
 directory = "/usr/share/tartaria/wallpapers"
 transition_on_startup = true
-
-    [wallpaper.automation]
-    enabled = true
-    interval_seconds = 1200
 
     [wallpaper.default]
     path = "/usr/share/tartaria/wallpapers/cherry_tree.png"
