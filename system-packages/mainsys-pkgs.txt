@@ -3,8 +3,6 @@ python-clickgen
 bibata-cursor-theme
 darkly-qt6-git
 matugen-git
-noctalia-qs
-noctalia-shell
 opentabletdriver
 distroshelf
 qt6ct-kde
