@@ -170,6 +170,7 @@ show_label = false
 
 [widget.clock]
 format = "{:%I:%M %p, %a %m}"
+scale = 0.94999999999999996
 
 [widget.control-center]
 glyph = "settings"
