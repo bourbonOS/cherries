@@ -1,5 +1,8 @@
 config_version = 12
 
+[audio]
+enable_sounds = true
+
 [bar]
 order = [ "Main" ]
 
@@ -90,6 +93,9 @@ polkit_agent = true
 
     [shell.animation]
     speed = 1.6000000238418579
+
+    [shell.launcher]
+    categories = false
 
     [shell.panel]
     open_near_click_control_center = true
