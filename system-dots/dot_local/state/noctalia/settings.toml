@@ -14,7 +14,7 @@ order = [ "Main" ]
     radius = 0
     scale = 1.0500000081956387
     start = [ "launcher", "group:g1", "media" ]
-    thickness = 40
+    thickness = 36
     widget_spacing = 12
 
         [[bar.Main.capsule_group]]
