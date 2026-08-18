@@ -7,3 +7,4 @@ opentabletdriver
 distroshelf
 qt6ct-kde
 valent
+noctalia-greeter
