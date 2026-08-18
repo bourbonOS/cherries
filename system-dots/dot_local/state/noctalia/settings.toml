@@ -177,7 +177,7 @@ unit = "imperial"
 show_label = false
 
 [widget.clock]
-format = "{:%I:%M %p, %a %m}"
+format = "{:%I:%M %p, %a %d}"
 scale = 0.94999999999999996
 
 [widget.control-center]
