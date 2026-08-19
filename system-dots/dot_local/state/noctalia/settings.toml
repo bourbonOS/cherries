@@ -39,7 +39,6 @@ warning_threshold = 0
 enable_ddcutil = true
 
 [control_center]
-sidebar = "none"
 sidebar_section = "none"
 width = 600
 
