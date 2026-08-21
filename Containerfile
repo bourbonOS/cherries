@@ -1,4 +1,4 @@
 FROM scratch AS final
 
 # copy over dotfiles
-COPY system-dots/ /
+COPY dotfiles/ /

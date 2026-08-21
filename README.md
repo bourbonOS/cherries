@@ -1,6 +1,6 @@
 ## Cherrybush
 
 
-This repository is responsible for supplying the dotfiles and prebuilt AUR packages for Tartaria.
+This repository is responsible for housing and packaging the default dotfiles for Tartaria.
 
 Not much going on down here, eh?
