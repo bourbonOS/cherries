@@ -55,12 +55,6 @@ layout {
     }
 }
 
-overview {
-    workspace-shadow {
-        off
-    }
-}
-
 hotkey-overlay {}
 
 prefer-no-csd
@@ -97,7 +91,7 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="^noctalia-wallpaper*"
+    match namespace="^noctalia-backdrop"
     place-within-backdrop true
 }
 

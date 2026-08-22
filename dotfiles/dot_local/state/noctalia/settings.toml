@@ -3,6 +3,10 @@ config_version = 12
 [audio]
 enable_sounds = true
 
+[backdrop]
+blur_intensity = 0.89999997988343239
+enabled = true
+
 [bar]
 order = [ "Main" ]
 
