@@ -96,6 +96,7 @@ widget_order = []
 
 [notification]
 layer = "overlay"
+offset_x = 9
 
 [osd]
 position = "bottom_center"
