@@ -133,44 +133,42 @@ polkit_agent = true
         enabled = true
         shortcut = "1"
         variant = "default"
-
+    
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        glyph = "lock-bolt"
+        shortcut = "2"
+        variant = "default"
+    
         [[shell.session.actions]]
         action = "suspend"
         countdown_seconds = 5.0
         enabled = true
-        shortcut = "2"
+        shortcut = "3"
         variant = "default"
-
+    
         [[shell.session.actions]]
         action = "logout"
         countdown_seconds = 5.0
         enabled = true
-        shortcut = "3"
+        shortcut = "4"
         variant = "default"
-
+    
         [[shell.session.actions]]
         action = "reboot"
         countdown_seconds = 5.0
         enabled = true
-        shortcut = "4"
+        shortcut = "5"
         variant = "default"
-
+    
         [[shell.session.actions]]
         action = "shutdown"
         countdown_seconds = 5.0
         enabled = true
-        shortcut = "5"
-        variant = "destructive"
-
-        [[shell.session.actions]]
-        action = "command"
-        command = "systemctl hibernate"
-        countdown_seconds = 5.0
-        enabled = true
-        glyph = "hibernate"
-        label = "Hibernate"
         shortcut = "6"
-        variant = "default"
+        variant = "destructive"
 
     [shell.shadow]
     direction = "center"
